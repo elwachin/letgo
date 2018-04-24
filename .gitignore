@@ -1,0 +1,19 @@
+log
+output
+wdio.local.conf.js
+wdio.debug.conf.js
+
+# IntelliJ IDEA
+*.iws
+*.iml
+*.ipr
+.idea
+
+# Eclipse
+.classpath
+.project
+.settings
+
+node_modules
+npm-debug.log
+nano.save

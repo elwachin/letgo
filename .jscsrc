@@ -1,0 +1,8 @@
+{
+  "preset": "airbnb",
+  "maximumLineLength": 140,
+  "validateIndentation": 2,
+  "requirePaddingNewLinesBeforeLineComments": {
+    "allExcept": "firstAfterCurly"
+  }
+}
