@@ -7,33 +7,31 @@ defineSupportCode(function ({ When, Then, Given }) {
 
         return browser
             .url('/');
-    });
+      });
 
-    When(/^I signup/, function () {
+    When(/^I signup$/, function () {
         const data = require('src/support/data/signup.data');
 
-        browser.signup(data);
-        return browser.login(data);
-    });
-
+        return browser.signup(data);
+      });
 
     Then(/^I should be a customer$/, function () {
 
-        return browser.seeCRM();
+        return browser.loggedInLogo();
 
-    });
+      });
 
-    When(/^I login with wrong credentials$/, function () {
-        const data = require('src/support/data/wrong-login.data');
-
-        return browser.loginWithWrongCredentials(data);
-    });
-
-    Then(/^I should see login error$/, function () {
-        return browser.seeLoginError();
-    });
+    // When(/^I login with wrong credentials$/, function () {
+    //     const data = require('src/support/data/wrong-login.data');
+    //
+    //     return browser.loginWithWrongCredentials(data);
+    //   });
+    //
+    // Then(/^I should see login error$/, function () {
+    //     return browser.seeLoginError();
+    //   });
 
     Then(/^I logout$/, function () {
         return browser.forceLogout();
-    });
-});
+      });
+  });

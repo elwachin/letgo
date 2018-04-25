@@ -3,18 +3,21 @@
 /**
  * @classdesc Object that represents Login page
  */
-class LoginPage {
+class SignupPage {
   get pageElements() {
     return {
         loginButton: '#login-button',
         loginForm: 'h2',
         loginError: 'div.alert-danger',
-        imLoggedInLabel: '#crm',
-        logoutButton: 'ul span',
-        emailField: '#username',
-        passwordField: '#password',
+        imLoggedInLabel: 'div.avatar',
+        logoutButton: 'span[data-test=\'menu-logout\']',
+        emailField: 'input[data-test=login-input-email]',
+        passwordField: 'input[data-test=login-input-password]',
         accessButton: `button[data-test='login']`,
         registerButton: 'button.Auth__first-btn___3f0Am',
+        name: 'input[name=name]',
+        logoutConfirmation: 'section',
+        logoutButtonConf: 'button[data-test=logout-confirm]',
 
       };
 
@@ -30,7 +33,7 @@ class LoginPage {
         .click(this.pageElements.registerButton)
       .fillInForm(this.pageElements, data)
       .click(this.pageElements.loginButton)
-      .waitForVisible(this.pageElements.crm);
+      .waitForVisible(this.pageElements.imLoggedInLabel);
   }
 
   /**
@@ -57,7 +60,8 @@ class LoginPage {
    * @returns {Promise}
    */
   logout() {
-    return browser.click(this.pageElements.imLoggedInLabel).waitForVisible(this.pageElements.logoutButton).click(this.pageElements.logoutButton);
+    browser.click(this.pageElements.imLoggedInLabel).waitForVisible(this.pageElements.logoutButton).click(this.pageElements.logoutButton);
+    return browser.waitForVisible(this.pageElements.logoutConfirmation).click(this.pageElements.logoutButtonConf);
   }
 
   /**
@@ -78,4 +82,4 @@ class LoginPage {
 
 }
 
-module.exports = new LoginPage();
+module.exports = new SignupPage();

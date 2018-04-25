@@ -1,5 +1,5 @@
 @nrt @login
-Feature: As a visitor I want to login
+Feature: As a visitor I want to signup
 
   @smoke
   Scenario: Simple register
