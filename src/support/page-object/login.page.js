@@ -8,7 +8,6 @@ class LoginPage {
     return {
         loginButton: '#login-button',
         loginForm: 'h2',
-        crm: '#crm',
         loginError: 'div.alert-danger',
         imLoggedInLabel: '#crm',
         logoutButton: 'ul span',
