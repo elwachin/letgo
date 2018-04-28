@@ -1,5 +1,10 @@
 language: node_js
 node_js:
-  - "7"
+  - "8"
 sudo: enabled
 
+install:
+  - npm install
+  - npm install -g npx
+  - npm install -g allure-commandline
+  - apt-get install default-jre
