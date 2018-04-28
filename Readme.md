@@ -117,3 +117,5 @@ For example:
 
 ## Writing Automated Tests
 Read detailed explanations in [Framework.md](https://github.com/nespresso/ntaf/blob/master/template/doc/Framework.md).
+
+##Integration with travis ci
