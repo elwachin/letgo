@@ -1,9 +1,7 @@
-sudo: enabled
 language: node_js
 node_js:
-  - "iojs"
   - "8"
-
+sudo: enabled
 
 install:
 - npm install
