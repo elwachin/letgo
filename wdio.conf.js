@@ -6,6 +6,14 @@ const config = {
   maxInstances: 1,
   baseUrl: 'https://es.letgo.com/es',
   locale: 'en',
+    reporters: ['allure'],
+    reporterOptions: {
+        allure: {
+            outputDir: 'allure-results',
+        }
+    },
+
+
 
   // capabilities: [
   //   {

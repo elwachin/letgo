@@ -6,9 +6,10 @@
 class SignupPage {
   get pageElements() {
     return {
-        loginButton: '#login-button',
+        submitButton: 'button[data-test=login-email-submit]',
+        loginButton: 'button[data-test=login-email]',
         loginForm: 'h2',
-        loginError: 'div.alert-danger',
+        loginError: 'div.Auth__snackbar___1KTq4',
         imLoggedInLabel: 'div.avatar',
         logoutButton: 'span[data-test=\'menu-logout\']',
         emailField: 'input[data-test=login-input-email]',
@@ -32,18 +33,29 @@ class SignupPage {
     return browser.click(this.pageElements.accessButton)
         .click(this.pageElements.registerButton)
       .fillInForm(this.pageElements, data)
-      .click(this.pageElements.loginButton)
-      .waitForVisible(this.pageElements.imLoggedInLabel);
+        .click(this.pageElements.submitButton)
+        .waitForVisible(this.pageElements.imLoggedInLabel);
   }
 
+    /**
+     * @desc Login
+     * @param {Object} data
+     * @return {Promise}
+     */
+    login (data) {
+        return browser.click(this.pageElements.accessButton)
+            .click(this.pageElements.loginButton)
+            .fillInForm(this.pageElements, data).click(this.pageElements.submitButton)
+            .waitForVisible(this.pageElements.imLoggedInLabel)
+  }
   /**
    * @desc Login with wrong credentials
    * @param {Object} data
    * @return {Promise}
    */
   loginWithWrongCredentials(data) {
-    return browser
-      .fillInForm(this.pageElements, data)
+      return browser.click(this.pageElements.loginButton)
+          .fillInForm(this.pageElements, data).click(this.pageElements.submitButton)
       .click(this.pageElements.loginButton).waitForVisible(this.pageElements.loginError);
   }
 
@@ -62,14 +74,6 @@ class SignupPage {
   logout() {
     browser.click(this.pageElements.imLoggedInLabel).waitForVisible(this.pageElements.logoutButton).click(this.pageElements.logoutButton);
     return browser.waitForVisible(this.pageElements.logoutConfirmation).click(this.pageElements.logoutButtonConf);
-  }
-
-  /**
-   * @desc Returns true if login form is displayed.
-   * @return {Promise}
-   */
-  isLoginFormDisplayed() {
-    return browser.isExisting(this.pageElements.loginForm);
   }
 
   /**

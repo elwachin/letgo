@@ -18,6 +18,15 @@ class Signup {
     return this.signupPage.signup(data);
   }
 
+    /**
+     * @desc Login with credentials
+     * @param {Object} data
+     * @return {Promise}
+     */
+    login (data) {
+        return this.signupPage.login(data)
+    }
+
   /**
    * @desc If customer is logged in, force logout. Otherwise, do nothing.
    * @returns {Promise}
@@ -65,7 +74,7 @@ class Signup {
 const signup = new Signup(require('../../../../engineerTest/src/support/page-object/signup.page'));
 
 /**
- * @alias Login.login
+ * @alias Signup.signup
  * @memberOf browser
  * @method login
  */
@@ -76,6 +85,32 @@ browser.addCommand('signup', (data) => {
   });
   return signup.signup(data);
 });
+
+/**
+ * @alias Signup.signup
+ * @memberOf browser
+ * @method login
+ */
+browser.addCommand('loginWithWrongCredentials', (data) => {
+    logger.info(`login with wrong credentials`, {
+        file: __filename,
+        method: 'browser.loginWithWrongCredentials',
+    })
+    return signup.loginWithWrongCredentials(data)
+})
+
+/**
+ * @alias Signup.login
+ * @memberOf browser
+ * @method login
+ */
+browser.addCommand('login', (data) => {
+    logger.info(`Login  email="{data.emailField}" password="{data.passwordField}"`, {
+        file: __filename,
+        method: 'browser.login',
+    })
+    return signup.login(data)
+})
 
 /**
  * @alias Login.loggedIn
@@ -104,7 +139,7 @@ browser.addCommand('seeLoginError', () => {
 });
 
 /**
- * @alias Login.logout
+ * @alias Signup.logout
  * @memberOf browser
  * @method logout
  */
@@ -115,8 +150,5 @@ browser.addCommand('forceLogout', () => {
   });
   return signup.forceLogout();
 });
-
-
-
 
 module.exports = signup;
